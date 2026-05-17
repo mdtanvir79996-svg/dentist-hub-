@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Is It Dental | Harley Street London | TMJ & Cosmetic Specialist</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES: PREMIUM PALETTE --- */
+        :root {
+            --color-primary: #0B1120; /* Deep, Rich Navy */
+            --color-secondary: #C5A059; /* Muted Elegant Gold */
+            --color-secondary-light: #e0c090;
+            --color-bg-light: #FAFAFA; /* Crisp Off-White */
+            --color-white: #FFFFFF;
+            --color-text: #334155;
+            --color-text-light: #64748B;
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(11, 17, 32, 0.92);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            /* Premium Shadows */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+            --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            
+            /* Transitions */
+            --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother easing */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg-light);
+            line-height: 1.8; /* Increased for readability */
+            font-weight: 300; /* Lighter weight for elegance */
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased; /* Crisp text */
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- SUBTLE NOISE TEXTURE (For tactile feel) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-primary);
+            font-weight: 600;
+            letter-spacing: -0.02em; /* Tighter tracking for modern look */
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .section-padding { padding: 120px 0; position: relative; } /* More breathing room */
+        .text-center { text-align: center; }
+        .text-gold { color: var(--color-secondary); }
+        .bg-white { background-color: var(--color-white); }
+        .bg-light { background-color: #F9FAFB; }
+
+        /* Premium Gradient Text */
+        .shimmer-text {
+            background: linear-gradient(110deg, var(--color-primary) 30%, var(--color-secondary) 50%, var(--color-primary) 70%);
+            background-size: 200% auto;
+            color: var(--color-primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 8s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: -200% center; }
+        }
+
+        /* --- BUTTONS (Refined) --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 40px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 2px; /* Sharper corners for professional look */
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+
+        .btn-primary { background-color: var(--color-secondary); color: var(--color-white); box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2); }
+        .btn-primary:hover { background-color: var(--color-primary); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(11, 17, 32, 0.2); }
+
+        .btn-outline { border: 1px solid rgba(255,255,255,0.4); color: var(--color-white); background: transparent; backdrop-filter: blur(5px); }
+        .btn-outline:hover { background-color: var(--color-white); color: var(--color-primary); border-color: var(--color-white); }
+
+        /* --- ANIMATED BACKGROUND BLOBS (Subtler) --- */
+        .animated-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; animation: float 20s infinite ease-in-out alternate; }
+        .blob-1 { top: -10%; left: -10%; width: 600px; height: 600px; background: rgba(197, 160, 89, 0.08); animation-duration: 25s; }
+        .blob-2 { bottom: 10%; right: -5%; width: 500px; height: 500px; background: rgba(15, 23, 42, 0.03); animation-duration: 20s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(40px, -40px) rotate(5deg); }
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0; /* Clean height */
+            transition: var(--transition-smooth);
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-white); font-weight: 700; letter-spacing: 0.5px; }
+        .logo span { color: var(--color-secondary); }
+
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: rgba(255,255,255,0.9); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; position: relative; font-weight: 500; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -24px; left: 0; width: 0; height: 1px; background-color: var(--color-secondary); transition: var(--transition-smooth); }
+        .nav-links a:hover { color: var(--color-white); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-actions { display: flex; gap: 20px; align-items: center; }
+        .call-btn { display: flex; align-items: center; gap: 10px; color: var(--color-white); font-size: 0.9rem; font-weight: 300; }
+        .mobile-toggle { display: none; color: var(--color-white); font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO (Darker Overlay) --- */
+        .hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: center; color: var(--color-white); overflow: hidden; }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(11, 17, 32, 0.85), rgba(11, 17, 32, 0.7)),
+                        url('https://picsum.photos/seed/dentalhero/1920/1080.jpg') center/cover no-repeat;
+            z-index: -2; will-change: transform;
+        }
+        .hero-content { max-width: 850px; position: relative; z-index: 2; }
+        .hero-badges { display: flex; gap: 15px; margin-bottom: 30px; }
+        .badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 24px; border-radius: 2px; font-size: 0.75rem; color: var(--color-secondary); text-transform: uppercase; letter-spacing: 2px; backdrop-filter: blur(10px); font-weight: 600; }
+        .hero h1 { font-size: 4.8rem; line-height: 1.1; margin-bottom: 30px; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.3rem; margin-bottom: 45px; opacity: 0.9; max-width: 650px; font-weight: 300; }
+        .hero-btns { display: flex; gap: 25px; flex-wrap: wrap; }
+
+        /* --- CARDS (Professional & Clean) --- */
+        .service-card, .team-card {
+            background: var(--color-white);
+            border-radius: 4px; /* Slight radius for professional feel */
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex; flex-direction: column;
+        }
+
+        /* Subtle Spotlight Effect */
+        .service-card::before, .team-card::before {
+            content: ""; position: absolute; height: 100%; width: 100%; top: 0; left: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(197, 160, 89, 0.04), transparent 40%);
+            z-index: 1; opacity: 0; transition: opacity 0.6s; pointer-events: none;
+        }
+
+        .service-card::after, .team-card::after {
+            content: ""; position: absolute; height: 100%; width: 100%; top: 0; left: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(197, 160, 89, 0.2), transparent 40%);
+            z-index: 0; opacity: 0; transition: opacity 0.6s; border-radius: inherit; pointer-events: none;
+        }
+
+        .service-card:hover, .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .service-card:hover::before, .team-card:hover::before { opacity: 1; }
+        .service-card:hover::after, .team-card:hover::after { opacity: 1; }
+        .card-content { position: relative; z-index: 2; display: flex; flex-direction: column; flex-grow: 1; padding: 40px; }
+
+        /* Service Specifics */
+        .service-icon { font-size: 2rem; color: var(--color-secondary); margin-bottom: 25px; transition: transform 0.5s ease; }
+        .service-card:hover .service-icon { transform: scale(1.1); color: var(--color-primary); }
+        .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; letter-spacing: -0.01em; }
+        .service-card p { color: var(--color-text-light); font-size: 0.95rem; margin-bottom: 30px; flex-grow: 1; }
+        .read-more { color: var(--color-primary); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; display: inline-flex; align-items: center; gap: 8px; }
+        .read-more i { transition: transform 0.3s; font-size: 0.8rem; }
+        .service-card:hover .read-more i { transform: translateX(5px); color: var(--color-secondary); }
+
+        /* Team Specifics */
+        .team-img-wrapper { overflow: hidden; height: 400px; position: relative; background: #f1f5f9; }
+        .team-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: grayscale(20%); }
+        .team-card:hover .team-img-wrapper img { transform: scale(1.03); filter: grayscale(0%); }
+        .team-content { text-align: center; padding-top: 25px; }
+        .team-role { color: var(--color-secondary); font-weight: 600; margin-bottom: 15px; display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        /* --- ANIMATIONS --- */
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* --- SECTIONS --- */
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 20px; }
+        .section-header .divider { width: 60px; height: 2px; background: var(--color-secondary); margin: 0 auto; opacity: 0.5; }
+        .section-header p { max-width: 600px; margin: 0 auto; color: var(--color-text-light); font-weight: 300; }
+
+        .services-grid, .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
+
+        /* --- FOUNDER --- */
+        .founder-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .founder-img { position: relative; border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-lg); }
+        .founder-img img { width: 100%; display: block; transition: transform 0.8s ease; filter: grayscale(10%); }
+        .founder-img:hover img { transform: scale(1.02); filter: grayscale(0%); }
+        .founder-stats { display: flex; gap: 50px; margin-top: 40px; padding-top: 40px; border-top: 1px solid #e2e8f0; }
+        .stat h4 { font-size: 2.2rem; color: var(--color-primary); margin-bottom: 5px; font-family: 'Playfair Display', serif; }
+        .stat p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-light); }
+
+        /* --- REFERRAL FORM (Clean & Professional) --- */
+        .referral-section { background-color: #F3F4F6; }
+        .referral-container { background: var(--color-white); padding: 60px; border-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .full-width { grid-column: span 2; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 16px 20px; border: 1px solid #E2E8F0; border-radius: 2px;
+            font-family: 'Lato', sans-serif; font-size: 0.95rem; transition: var(--transition-smooth); background: #FAFAFA;
+            color: var(--color-primary);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--color-secondary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.05);
+        }
+
+        /* --- FLOATING BUTTONS --- */
+        .fab-container { position: fixed; bottom: 40px; right: 40px; display: flex; flex-direction: column-reverse; gap: 15px; z-index: 2000; align-items: flex-end; }
+        .fab { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: var(--transition-smooth); position: relative; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); }
+        .fab i { font-size: 1.4rem; }
+        .fab:hover { transform: translateY(-3px); background-color: var(--color-primary); }
+        .pulse { animation: pulse-animation 2s infinite; }
+        @keyframes pulse-animation { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        .whatsapp-fab { background-color: #25D366; }
+        .mail-fab { background-color: var(--color-primary); }
+        .fab-label { position: absolute; right: 65px; top: 50%; transform: translateY(-50%); background: var(--color-primary); color: white; padding: 6px 12px; border-radius: 2px; font-size: 0.75rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; white-space: nowrap; font-weight: 500; letter-spacing: 0.5px; }
+        .fab:hover .fab-label { opacity: 1; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .appointment-bar { grid-template-columns: 1fr; margin-top: 0; }
+            .founder-section { grid-template-columns: 1fr; }
+            .founder-img { order: -1; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; top: 80px; left: 0; width: 100%; background: var(--color-primary); flex-direction: column; padding: 40px; text-align: center; transform: translateY(-150%); transition: transform 0.4s ease; }
+            .nav-links.active { transform: translateY(0); }
+            .mobile-toggle { display: block; }
+            .nav-actions { display: none; }
+            .fab-container { bottom: 20px; right: 20px; }
+            .fab { width: 50px; height: 50px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .section-header h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container navbar">
+            <a href="#" class="logo">This Is It <span>Dental</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#referral">Referral</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+442074865180" class="call-btn">
+                    <i class="fas fa-phone-alt"></i> 
+                    <span class="desktop-only">+44 (0) 20 7486 5180</span>
+                </a>
+                <a href="#book-appointment" class="btn btn-primary">Book Appointment</a>
+            </div>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="animated-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badges reveal-on-scroll">
+                    <span class="badge">TMJ Specialist</span>
+                    <span class="badge">DTR T-SCAN Certified</span>
+                </div>
+                <h1 class="reveal-on-scroll">Dentist Harley Street,<br><span class="shimmer-text">Marylebone London</span></h1>
+                <p class="reveal-on-scroll">Whether you're a new visitor to our practice or have been with us before, we are committed to providing exceptional care. Your journey to a healthier smile begins here.</p>
+                <div class="hero-btns reveal-on-scroll">
+                    <a href="#book-appointment" class="btn btn-primary">Book Your Appointment Online</a>
+                    <a href="tel:+442074865180" class="btn btn-outline">Call Us Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Appointment Info -->
+    <div class="container">
+        <div class="appointment-bar reveal-on-scroll" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(15px); border-radius: 4px; padding: 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; align-items: center; margin-top: -50px; position: relative; z-index: 10; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,0.5);">
+            <div class="app-info">
+                <h3 style="font-size: 1.4rem; color: var(--color-primary); margin-bottom: 10px;">Ready to smile?</h3>
+                <p style="font-weight: 300;">For emergency appointments, please reach out to us directly at <strong style="font-weight: 500;">+44 (0) 20 7486 5180</strong>.</p>
+            </div>
+            <div class="app-actions">
+                <a href="#book-appointment" class="btn btn-primary" style="text-align:center; width: 100%;">Book Appointment</a>
+            </div>
+            <div class="app-actions">
+                <a href="#referral" class="btn btn-outline-dark" style="text-align:center; border: 1px solid var(--color-primary); color: var(--color-primary); background: transparent; backdrop-filter: none;">Patient Referral</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="animated-bg"><div class="blob blob-1"></div></div>
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2>Dental Excellence in Harley Street</h2>
+                <div class="divider"></div>
+                <p>Discover the leading dental practice in Harley Street, London. We are a team of experienced and caring dental specialists with a penchant for perfection.</p>
+            </div>
+            <div class="founder-section">
+                <div class="founder-img reveal-left">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8d9791dc-05c8-45ba-9f02-37cfa0435b2f.png?auth_key=1879006362-44047e5e7bff46c5b98c7ead906c3f6c-0-48c62a8f43bfb96f6ddf95b2079ce149" alt="Dr Rena Uberoi">
+                </div>
+                <div class="founder-text reveal-right">
+                    <span class="text-gold" style="font-weight: 700; letter-spacing: 2px; font-size: 0.85rem; display: block; margin-bottom: 15px;">FOUNDER & PRINCIPAL DENTIST</span>
+                    <h2 style="margin: 0 0 20px 0;">Dr Rena Uberoi</h2>
+                    <p class="text-gold" style="margin-bottom: 30px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem;">GDC No: 69753 | Exp. 30+</p>
+                    <p>Founder and Principal Dental Dr Rena Uberoi received her dental qualifications from the prestigious Guy’s Dental Hospital, London, in 1993. Over an illustrative career of over three decades in general dentistry, she has been aiding patients with their dental problems and concerns.</p>
+                    <br>
+                    <p>Dr Uberoi has a special interest in the field of functional aesthetics and occlusion. She is one of very few dentists trained in the use of a digital bite analysis machine called a Tekscan.</p>
+                    <div class="founder-stats">
+                        <div class="stat"><h4>1993</h4><p>Graduated</p></div>
+                        <div class="stat"><h4>30+</h4><p>Years Exp</p></div>
+                        <div class="stat"><h4>Award</h4><p>Winner</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-white">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2 class="shimmer-text">Our Dental Solutions</h2>
+                <div class="divider"></div>
+                <p>Comprehensive care tailored to your unique needs.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal-on-scroll">
+                    <div class="card-content">
+                        <div class="service-icon"><i class="fas fa-tooth"></i></div>
+                        <h3>General Dentistry</h3>
+                        <p>Routine check-ups, hygiene, and white fillings to preserve your dental health for ages.</p>
+                        <a href="#book-appointment" class="read-more">Book Checkup <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="card-content">
+                        <div class="service-icon"><i class="fas fa-magic"></i></div>
+                        <h3>Cosmetic Treatments</h3>
+                        <p>Teeth Whitening, Porcelain Veneers, and Smile Makeovers. Shine bright with our detailed processes.</p>
+                        <a href="#book-appointment" class="read-more">Enhance Smile <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="card-content">
+                        <div class="service-icon"><i class="fas fa-bone"></i></div>
+                        <h3>Dental Implants</h3>
+                        <p>Enliven your life with our dental implant solutions, performed under expert and exclusive supervision.</p>
+                        <a href="#book-appointment" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="card-content">
+                        <div class="service-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>TMJ & Headaches</h3>
+                        <p>Specialist care for TMJ issues, clenching, and grinding. Relief for night headaches.</p>
+                        <a href="#book-appointment" class="read-more">Get Relief <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="card-content">
+                        <div class="service-icon"><i class="fas fa-align-center"></i></div>
+                        <h3>Clear Aligners</h3>
+                        <p>Refresh your look with our clear aligner solutions. Straighten teeth discreetly.</p>
+                        <a href="#book-appointment" class="read-more">Start Journey <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="card-content">
+                        <div class="service-icon"><i class="fas fa-fill-drip"></i></div>
+                        <h3>Composite Bonding</h3>
+                        <p>Quick, effective solution for chipped teeth. Composite bonding offers a premium aesthetic.</p>
+                        <a href="#book-appointment" class="read-more">Fix Chips <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2>Our Dedicated Team</h2>
+                <div class="divider"></div>
+                <p>Meet the experts behind your perfect smile.</p>
+            </div>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card reveal-on-scroll">
+                    <div class="team-img-wrapper">
+                        <img src="https://z-cdn-media.chatglm.cn/files/8d9791dc-05c8-45ba-9f02-37cfa0435b2f.png?auth_key=1879006362-44047e5e7bff46c5b98c7ead906c3f6c-0-48c62a8f43bfb96f6ddf95b2079ce149" alt="Dr Rena Uberoi">
+                    </div>
+                    <div class="card-content team-content">
+                        <h3>Dr Rena Uberoi</h3>
+                        <span class="team-role">Founder & Principal Dentist</span>
+                        <a href="#about" class="read-more" style="justify-content: center;">View Profile <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="team-card reveal-on-scroll">
+                    <div class="team-img-wrapper">
+                        <img src="https://z-cdn-media.chatglm.cn/files/d72afb80-7f2c-4c53-88b9-f560f401af33.png?auth_key=1879021419-faedbaa73ed24457959274053d047e9c-0-22da2b1bfd727345f44ac5e0a1d6d9f1" alt="Dr Evangelos Anagnostopoulos">
+                    </div>
+                    <div class="card-content team-content">
+                        <h3>Dr Evangelos Anagnostopoulos</h3>
+                        <span class="team-role">Dentist</span>
+                        <a href="#book-appointment" class="read-more" style="justify-content: center;">Book Appointment <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="team-card reveal-on-scroll">
+                    <div class="team-img-wrapper">
+                        <img src="https://z-cdn-media.chatglm.cn/files/82f06f13-4f20-4c6e-a28c-cc1484365f99.png?auth_key=1879021879-a706ae4d46f24098ab49559ce7e91fa9-0-d2ddc555155ce36656812e3803fc329b" alt="Dr Susan Tan">
+                    </div>
+                    <div class="card-content team-content">
+                        <h3>Dr Susan Tan</h3>
+                        <span class="team-role">Dentist</span>
+                        <a href="#book-appointment" class="read-more" style="justify-content: center;">Book Appointment <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2>Expert Technologies</h2>
+                <div class="divider"></div>
+                <p>Utilizing cutting-edge equipment for superior treatment.</p>
+            </div>
+            <div style="display: flex; overflow-x: auto; gap: 30px; padding-bottom: 30px;" class="reveal-on-scroll">
+                <div class="service-card" style="min-width: 300px; background: var(--color-primary); color: white; border: none;">
+                    <div class="card-content">
+                        <h3 style="color: var(--color-secondary);">Tekscan T-Scan</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-weight: 300;">Revolutionary technology for precise bite analysis inside our chambers.</p>
+                    </div>
+                </div>
+                <div class="service-card" style="min-width: 300px; background: var(--color-primary); color: white; border: none;">
+                    <div class="card-content">
+                        <h3 style="color: var(--color-secondary);">Biolase Epic Laser</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-weight: 300;">With our Biolase-facilitated PBM treatment, say farewell to invasive dental procedures.</p>
+                    </div>
+                </div>
+                <div class="service-card" style="min-width: 300px; background: var(--color-primary); color: white; border: none;">
+                    <div class="card-content">
+                        <h3 style="color: var(--color-secondary);">Trios Scanner</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-weight: 300;">Revolutionise your dental experience with the Trios Scanner. Cutting-edge technology for precise diagnostics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Section -->
+    <section id="referral" class="section-padding referral-section">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <h2>Patient Referral</h2>
+                <div class="divider"></div>
+                <p>We accept referrals in TMJ Issues, Clenching & Grinding, and Sleep Apnea. Please complete our online referral form below.</p>
+            </div>
+
+            <div class="referral-container reveal-on-scroll">
+                <form id="referralForm">
+                    <h4 style="margin-bottom: 25px; color: var(--color-primary); font-size: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">PATIENT DETAILS</h4>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Patient First Name</label><input type="text" required></div>
+                        <div class="form-group"><label>Patient Family Name</label><input type="text" required></div>
+                        <div class="form-group"><label>Patient D.O.B</label><input type="date" required></div>
+                        <div class="form-group"><label>Patient Gender</label><select><option>Select one...</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+                        <div class="form-group full-width"><label>Patient Address</label><input type="text" required></div>
+                        <div class="form-group"><label>Patient Postcode</label><input type="text" required></div>
+                        <div class="form-group"><label>Patient Phone Number</label><input type="tel" required></div>
+                        <div class="form-group full-width"><label>Patient Email</label><input type="email" required></div>
+                    </div>
+                    <h4 style="margin: 30px 0 25px 0; color: var(--color-primary); font-size: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">REFERRING DENTIST DETAILS</h4>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Name Of Dentist</label><input type="text" required></div>
+                        <div class="form-group"><label>Dentist's Email</label><input type="email" required></div>
+                        <div class="form-group full-width"><label>Practice Address</label><input type="text" required></div>
+                        <div class="form-group"><label>Practice Phone Number</label><input type="tel" required></div>
+                        <div class="form-group"><label>Practice Post Code</label><input type="text" required></div>
+                    </div>
+                    <h4 style="margin: 30px 0 25px 0; color: var(--color-primary); font-size: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">REFERRAL DETAILS</h4>
+                    <div class="form-grid">
+                        <div class="form-group full-width"><label>Dentistry Field & Dentist (If Any In Particular)</label><input type="text"></div>
+                        <div class="form-group full-width"><label>Remarks</label><textarea rows="4"></textarea></div>
+                    </div>
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Referral</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book-appointment" class="section-padding bg-white">
+        <div class="container">
+            <div class="founder-section">
+                <div class="booking-text reveal-left">
+                    <span class="text-gold" style="font-weight: 700; letter-spacing: 2px; font-size: 0.85rem; display: block; margin-bottom: 15px;">START YOUR JOURNEY</span>
+                    <h2 style="margin: 0 0 25px 0;">Book Your Appointment</h2>
+                    <p style="margin-bottom: 40px; font-size: 1.1rem; font-weight: 300;">Schedule an appointment with our specialist dentists or hygienist online. We understand your time is valuable, so we've made it convenient.</p>
+                    <div style="background: var(--color-primary); color: white; padding: 30px; border-radius: 4px; text-align: center; box-shadow: var(--shadow-lg);">
+                        <i class="fas fa-phone-alt" style="color: var(--color-secondary); font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <h4 style="color:white; margin-bottom: 5px;">Emergency?</h4>
+                        <p style="opacity: 0.8;">Call: +44 (0) 20 7486 5180</p>
+                    </div>
+                </div>
+                <div class="booking-form-card reveal-right" style="background: white; padding: 50px; border-radius: 4px; box-shadow: var(--shadow-lg); border: 1px solid #f1f5f9;">
+                    <form id="bookingForm">
+                        <div class="form-group" style="margin-bottom: 25px;"><label style="display:block; margin-bottom:10px; font-weight:600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Service</label><select style="width: 100%; padding: 16px; border: 1px solid #e2e8f0; border-radius: 2px;"><option>General Dentistry</option><option>Hygiene</option><option>TMJ Consultation</option></select></div>
+                        <div class="form-group" style="margin-bottom: 25px;"><label style="display:block; margin-bottom:10px; font-weight:600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Preferred Date</label><input type="date" required style="width: 100%; padding: 16px; border: 1px solid #e2e8f0; border-radius: 2px;"></div>
+                        <div class="form-group" style="margin-bottom: 25px;"><label style="display:block; margin-bottom:10px; font-weight:600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Full Name</label><input type="text" required style="width: 100%; padding: 16px; border: 1px solid #e2e8f0; border-radius: 2px;"></div>
+                        <div class="form-group" style="margin-bottom: 25px;"><label style="display:block; margin-bottom:10px; font-weight:600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Phone Number</label><input type="tel" required style="width: 100%; padding: 16px; border: 1px solid #e2e8f0; border-radius: 2px;"></div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 2px;">Request Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" style="background: var(--color-primary); color: white; padding: 100px 0 40px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px;">
+                <div>
+                    <a href="#" class="logo" style="margin-bottom: 25px; display: block; font-size: 1.5rem;">This Is It <span>Dental</span></a>
+                    <p style="opacity: 0.7; font-weight: 300; line-height: 1.8;">Providing exceptional dental care and specialized treatments in the heart of London.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--color-secondary); margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase;">Contact</h3>
+                    <ul style="opacity: 0.7; line-height: 2.2; font-weight: 300;">
+                        <li style="display: flex; gap: 15px;"><i class="fas fa-map-marker-alt" style="margin-top: 5px; width: 20px;"></i> 99, Harley Street, London, W1G6AQ</li>
+                        <li style="display: flex; gap: 15px;"><i class="fas fa-phone" style="margin-top: 5px; width: 20px;"></i> +44 (0) 20 7486 5180</li>
+                        <li style="display: flex; gap: 15px;"><i class="fas fa-envelope" style="margin-top: 5px; width: 20px;"></i> hello@thisisitdental.london</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--color-secondary); margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase;">Quick Links</h3>
+                    <ul style="opacity: 0.7; line-height: 2.2; font-weight: 300;">
+                        <li><a href="#about" style="display: block; transition: color 0.3s;">About Us</a></li>
+                        <li><a href="#services" style="display: block; transition: color 0.3s;">Our Services</a></li>
+                        <li><a href="#team" style="display: block; transition: color 0.3s;">Our Team</a></li>
+                        <li><a href="#contact" style="display: block; transition: color 0.3s;">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); font-size: 0.85rem;">
+                Copyright © 2024 This is it Dental. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fab-container">
+        <a href="mailto:hello@thisisitdental.london" class="fab mail-fab"><span class="fab-label">Email Us</span><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/442074865180" target="_blank" class="fab whatsapp-fab pulse"><span class="fab-label">Chat on WhatsApp</span><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(150%); background: white; padding: 20px 40px; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); z-index: 3000; display: flex; align-items: center; gap: 20px; transition: transform 0.5s; border: 1px solid #e2e8f0;">
+        <div style="background: #ecfdf5; padding: 10px; border-radius: 50%;"><i class="fas fa-check" style="color: #10b981; font-size: 1.2rem;"></i></div>
+        <div>
+            <h4 style="margin: 0; color: var(--color-primary); font-size: 1rem;">Success</h4>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--color-text); font-weight: 300;">Your request has been received.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Nav ---
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navLinks = document.getElementById('navLinks');
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // --- Spotlight Card Effect ---
+            const updateSpotlight = (e, sectionId) => {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                const rect = section.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                section.querySelectorAll('.service-card, .team-card').forEach(card => {
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            };
+
+            const servicesSection = document.getElementById('services');
+            const teamSection = document.getElementById('team');
+            if(servicesSection) servicesSection.addEventListener('mousemove', (e) => updateSpotlight(e, 'services'));
+            if(teamSection) teamSection.addEventListener('mousemove', (e) => updateSpotlight(e, 'team'));
+
+            // --- Scroll Reveal (Smoother) ---
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const delay = (index % 3) * 100; // Staggered delay
+                        entry.target.style.transitionDelay = `${delay}ms`;
+                        entry.target.classList.add('visible');
+                        setTimeout(() => { entry.target.style.transitionDelay = '0ms'; }, 1000 + delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+            // --- Form Handling ---
+            const handleForm = (id) => {
+                document.getElementById(id).addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = e.target.querySelector('button');
+                    const original = btn.innerText;
+                    btn.innerText = 'Processing...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+                    setTimeout(() => {
+                        const toast = document.getElementById('toast');
+                        toast.classList.add('show');
+                        toast.style.transform = 'translateX(-50%) translateY(0)';
+                        e.target.reset();
+                        btn.innerText = original;
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                        setTimeout(() => { toast.classList.remove('show'); }, 3000);
+                    }, 1500);
+                });
+            };
+            handleForm('bookingForm');
+            handleForm('referralForm');
+
+            // --- Smooth Scroll ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+                        navLinks.classList.remove('active');
+                        const icon = mobileToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
